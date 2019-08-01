@@ -222,6 +222,7 @@ var LibraryBrowser = {
                               document['webkitPointerLockElement'] === Module['canvas'] ||
                               document['msPointerLockElement'] === Module['canvas'];
       }
+      pointerLockChange();
       var canvas = Module['canvas'];
       if (canvas) {
         // forced aspect ratio can be enabled by defining 'forcedAspectRatio' on Module

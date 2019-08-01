@@ -51,6 +51,12 @@ var LibraryGLUT = {
       var newX = Browser.mouseX;
       var newY = Browser.mouseY;
       if (newX == lastX && newY == lastY) return;
+      if (Browser.pointerLock){
+        lastX = Browser.mouseMovementX;
+        lastY = Browser.mouseMovementY;
+        newX = 0;
+        newY = 0;
+      }
 
       if (GLUT.buttons == 0 && event.target == Module["canvas"] && GLUT.passiveMotionFunc) {
         event.preventDefault();
@@ -145,7 +151,8 @@ var LibraryGLUT = {
 
       var s = event['shiftKey'];
       switch (keycode) {
-        case 186: return s ? 58 : 59; // colon / semi-colon
+        case 59: return s ? 58 : 59; // colon / semi-colon (Mozilla)
+        case 186: return s ? 58 : 59; // colon / semi-colon (WebKit)
         case 187: return s ? 43 : 61; // add / equal (these two may be wrong)
         case 188: return s ? 60 : 44; // less-than / comma
         case 189: return s ? 95 : 45; // dash
